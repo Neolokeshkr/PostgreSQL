@@ -1,0 +1,82 @@
+Id and Pass
+
+Desktop Mode pgadmin
+	master password : lokesh030794
+
+	User : postgres
+	Password : root
+
+	User : lokesh
+	password : lokesh
+
+Web Mode pgadmin
+	
+	email : lokesh.kumar@infozech.com
+	pass :	lokesh030794
+
+Command to login into devuser
+	psql -U devusercr imaintain_cr -h localhost
+	pass : devuser#418
+
+
+***********************************************************
+Login as postgres user and use psql shell:
+	-sudo -u postgres psql
+
+	-psql -U postgres -h localhost;
+
+ALTER the Password for any user:
+	-#>ALTER USER user_name PASSWORD 'newPassword';
+
+To list all databases:
+	-#>\l
+
+To list all users and thier roles:
+	-#>\du
+
+To create a new user:
+	-#>CREATE USER lokesh WITH CREATEDB LOGIN ENCRYPTED PASSWORD 'lokesh';
+	- Here username, privilages and passoword is defined.
+After creating a user its mandtory to create a database by same name:
+	-#>CREATE DATABASE lokesh;
+
+To grant privilages to a user:
+	-#>GRANT ALL PRIVILAGES ON DATABASE db_name TO user_name;
+
+SELECT 
+   table_name, 
+   column_name, 
+   data_type 
+FROM 
+   information_schema.columns
+WHERE 
+   table_name = 'testDatabase';
+
+To select all records:
+	#SELECT * FROM public."tableName";
+		OR
+	#SELECT * FROM tableName
+
+To select DISTINCT records:
+	#SELECT DISTINCT test1."contractorName" from test1;
+
+*****************************************************************
+20 July 2021
+
+CREATE TABLE reassignment_history (
+	ser_id serial PRIMARY KEY,
+	req_stage VARCHAR ( 100 ) NOT NULL,
+	reassigned_by VARCHAR ( 255 ) NOT NULL,
+	reassigned_to VARCHAR ( 255 ) NOT NULL,
+	reassigned_date TIMESTAMP NOT NULL
+);
+
+2. Create reassignmentHistory.js file in AppBundle
+
+3.
+*****************************************************************
+
+
+Aggregate Function 
+Conversion
+
