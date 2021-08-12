@@ -57,6 +57,9 @@ To select all records:
 		OR
 	#SELECT * FROM tableName
 
+
+192.168.0.128
+
 To select DISTINCT records:
 	#SELECT DISTINCT test1."contractorName" from test1;
 
