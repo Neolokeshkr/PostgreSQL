@@ -8,9 +8,26 @@
 		Array Data Type- Allows us to declare any column as a Multi-dimensional array. This can be useful in storing differnt Address, contact numbers
 		Composite Type - Allows user to create structure which is a combination of columns.
 
+3. What are Schemas in PostgreSQL?
+	-Schemas are named collection of tables.
+	-Schemas can also contain views, indexes, sequences, data types, functions, operators.
+	
+	Advantages of Schema:	
+	1. Allows multiple users to use single database without interfering each other.
+	2. Organises Dtabase Objects into manageable groups.
+
+5. What are EXPRESSION in PostgreSQL?
+	-Expression are a combination of variavles, operators and functions which evaluates to a value.
+
+6. How to USE PostgreSQL as Calculator?
+	=# SELECT expression as expression_name;
+	=# SELECT 10+20 as addition;
+How to reset the serial data type to 0 once the table is truncated?
+
+Why Type casting is required for using monry data type in expression?
 
 
-
+	
 
 
 

@@ -102,5 +102,59 @@ Some important notes:
 	   supplier_id integer,
 	   price numeric
 	);
-	
+	=# \l - To display list of databases.
 
+5. Connecting to Database:	
+	=# \c name_of_db;
+
+6. Delete a database:
+	USing SQL:
+	=# DROP DATABASE db_name;
+	=# DROP DATABASE IF EXISTS db_name;
+
+	Using command line:
+	$ dropdb --if-exists -ei -h hostname -p port -U username db_name;
+		-e : echo
+		-i : issues verification prompt.
+
+7. Creating a Table:
+	=# CREATE TABLE COMPANY(
+	   ID INT PRIMARY KEY     NOT NULL,
+	   NAME           TEXT    NOT NULL,
+	   AGE            INT     NOT NULL,
+	   ADDRESS        CHAR(50),
+	   SALARY         REAL
+	);
+	
+8. Deleting a table:
+	=# DROP TABLE table_name1, table_name2;
+
+9. To Create a Schema:
+	=# CREATE SCHEMA schema_name;
+	=# CREATE TABLE schema_name.testTable();
+
+10. To Delete schema:
+	Empty Schema(All object already dropped)
+		=# DROP SCHEMA schema_name
+	Drop Schema including objects
+		=# DROP SCHEMA schema_name CASCADE;
+
+11. To list all the Schemas:
+	=# \dn
+
+12. To list all sequences
+	=# \ds;
+	=# \ds+;
+
+13. Using DEFAULT keyword:
+	-It is used when no value is specified/available for the column.
+
+14. Using Expressions:
+	=# SELECT col1+col2 as new_col_name FROM table_name;
+
+15. Some built in numeric functions:
+	COUNT(*),SUM(cols),AVG(cols) 
+
+16. Date Expressions:
+	SELECT CURRENT_DATE;
+	SELECT CURRENT_TIMESTAMP;
