@@ -1,1 +1,34 @@
 1. How to save a phone number in postgres and check for its correctness.?
+
+2. What are the advantages of Using PostgreSQL
+	-Ability to create ENUM Data Types, Eg : List of Weekdays
+	-Special Data Types to store:
+		Geometric Type - point, line segment, polygon
+		Network Addresses - IPV4, IPV6, MAC ADD
+		Array Data Type- Allows us to declare any column as a Multi-dimensional array. This can be useful in storing differnt Address, contact numbers
+		Composite Type - Allows user to create structure which is a combination of columns.
+
+
+
+
+
+
+
+
+
+Decoupled architecture/Kafka
+Threading
+Memory Allocation
+Threads in Javascript.
+
+CGI - Common Gateway Interface.
+
+
+
+Tech round
+Tak Rpund
+Head 
+
+Amber - AI.
+70-75.
+2013.

@@ -80,6 +80,27 @@ CREATE TABLE reassignment_history (
 *****************************************************************
 
 
-Aggregate Function 
-Conversion
+Some important notes:
+
+1. To create a ENUM Data Type:
+	CREATE TYPE week AS ENUM ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+
+2. To see the list of custom ENUM Data types
+	1. \dT
+	2. \dt+ -> To view ENUM structure.
+
+3. Declaration of Array:
+	CREATE TABLE monthly_savings (
+	   name text,
+	   saving_per_quarter integer[],
+	   scheme text[][]
+	);
+
+4. Composite Types: Allows user to create structure which is a combination of columns.
+	CREATE TYPE inventory_item AS (
+	   name text,
+	   supplier_id integer,
+	   price numeric
+	);
+	
 
