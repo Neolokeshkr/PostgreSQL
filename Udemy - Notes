@@ -1,0 +1,29 @@
+Operators in Postgres:
+	+,-,*,/,^,@
+
+String Operators and Fuunctions:
+
+	|| - Join two strings
+		=# SELECT 'Lokesh'||' '||'Kumar' AS NAME;
+	CONCAT() - Join two Strings 
+		=# SELECT CONCAT('Lokesh ','Kumar');
+	LOWER() - Gives a lower case string
+		=# SELECT LOWER('LOKESH KUMAR');
+	LENGTH() - Gives length of the string
+		=# SELECT LENGTH('LOKESH KUMAR');
+	UPPER() - Gives a lower case string
+		=# SELECT UPPER('lokesh kumar');
+
+Comparison Math Operators:
+	
+	BETWEEN - Is the value between other two values?
+		=# SELECT * FROM table WHERE column BETWEEN val1 AND val2;
+	NOT IN - Is the value NOT present in a list?
+		=# SELECT name FROM table WHERE name NOT IN ('listItem1','listItem2', ...);
+
+	IN - Is the value present in the list?
+		=# SELECT name FROM table WHERE name IN ('listItem1','listItem2', ...);
+	
+Relationships in Databases:
+
+1. One to Many Relationship

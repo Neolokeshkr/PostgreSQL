@@ -158,3 +158,4 @@ Some important notes:
 16. Date Expressions:
 	SELECT CURRENT_DATE;
 	SELECT CURRENT_TIMESTAMP;
+
