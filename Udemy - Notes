@@ -27,3 +27,17 @@ Comparison Math Operators:
 Relationships in Databases:
 
 1. One to Many Relationship
+	-Always look for "has many" in a relationship.
+	Eg 1. A facebook user has many photos.
+
+2. Many to One relationship
+	Eg : 1. Various photos belong to a single user.
+
+3. One to One relationship
+	Eg 	1. Ship <----> Captain
+		2. Company <---> CEO
+		3. Person <---> Driving License
+
+4. Many to Many Relationships;
+	Eg	1. Students <---> Classes
+		2. Movies <---> Actors
