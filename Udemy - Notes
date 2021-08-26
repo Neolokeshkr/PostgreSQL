@@ -26,18 +26,62 @@ Comparison Math Operators:
 	
 Relationships in Databases:
 
-1. One to Many Relationship
-	-Always look for "has many" in a relationship.
-	Eg 1. A facebook user has many photos.
+	1. One to Many Relationship
+		-Always look for "has many" in a relationship.
+		Eg 1. A facebook user has many photos.
 
-2. Many to One relationship
-	Eg : 1. Various photos belong to a single user.
+	2. Many to One relationship
+		Eg : 1. Various photos belong to a single user.
 
-3. One to One relationship
-	Eg 	1. Ship <----> Captain
-		2. Company <---> CEO
-		3. Person <---> Driving License
+	3. One to One relationship
+		Eg 	1. Ship <----> Captain
+			2. Company <---> CEO
+			3. Person <---> Driving License
 
-4. Many to Many Relationships;
-	Eg	1. Students <---> Classes
-		2. Movies <---> Actors
+	4. Many to Many Relationships;
+		Eg	1. Students <---> Classes
+			2. Movies <---> Actors
+
+Keys in PostgreSQL:
+
+	1. Primary Key : Uniquely identify a single record in a table.
+		Eg : 	CREATE TABLE users (
+				id SERIAL PRIMARY KEY,
+				username VARCHAR(50) 
+			);
+	
+	2. Foreign Key : Identifies a record usually in another table.
+		Eg :	CREATE TABLE photos(
+				id SERIAL PRIMARY KEY,
+				url VARCHAR(200),
+				user_id INTEGER REFERENCES users_udemy(id))
+			);
+	
+	3. Join Query:
+		Eg : SELECT * FROM users JOIN photos ON users.id = photos.user_id;
+	
+	4. DELETE Keyword
+		Eg: 	DELETE FROM users WHERE id=1;
+		
+		On Delete Options (when a user is deleted):
+		1. ON DELETE RESTRICT 	- Default Option|Throws Error
+		2. ON DELETE NO ACTION 	- Throws Error
+
+		3. ON DELETE CASCADE	- Deletes the photos too.
+			Eg : 	CREATE TABLE photos_udemy (
+					id SERIAL PRIMARY KEY,
+					url VARCHAR(200),
+					user_id INTEGER REFERENCES users_udemy(id) ON DELETE CASCADE
+				);
+
+		4. ON DELETE SET NULL	- Set user_id of photo to null
+			Eg : 	CREATE TABLE photos_udemy (
+					id SERIAL PRIMARY KEY,
+					url VARCHAR(200),
+					user_id INTEGER REFERENCES users_udemy(id) ON DELETE SET NULL
+		);
+
+		5. ON DELETE SET DEFAULT- Set user_id of photo to a default value,(if provided).
+
+
+
