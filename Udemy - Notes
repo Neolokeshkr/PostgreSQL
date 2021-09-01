@@ -1,7 +1,7 @@
 Operators in Postgres:
 	+,-,*,/,^,@
 
-String Operators and Fuunctions:
+String Operators and Functions:
 
 	|| - Join two strings
 		=# SELECT 'Lokesh'||' '||'Kumar' AS NAME;
@@ -82,6 +82,79 @@ Keys in PostgreSQL:
 		);
 
 		5. ON DELETE SET DEFAULT- Set user_id of photo to a default value,(if provided).
+
+JOINS And Aggregation:
+	
+	Joins
+	
+		1. Joins are used when we are asked to find values across different resources/tables.
+		2. Produces values by merging together rows from different tables.
+		3. Four Types OF Joins:
+			1. INNER JOIN OR JOIN
+			2. LEFT OUTER JOIN
+			3. RIGHT OUTER JOIN
+			4. FULL JOIN
+
+		Eg: 	SELECT content AS Comment, url
+			FROM photos
+			JOIN comments ON photos.id=comments.photo_id;
+
+			SELECT p.id AS photo_id, c.id AS comment_id
+			FROM photos AS p
+			JOIN comments AS c ON p.id = c.photo_id;
+
+		4. Right, Left and Full Joins displat NULL values if values are not available in any of the columns.
+		5. Joins can be better understood using Venn Diagrams.
+
+	Aggregation
+		1. Produces/Creates a single result by looking at differet rows.
+		2. Words like most average and least are a sign that we need to use aggregation.
+
+		Types of aggregate functions:
+		1. COUNT()
+			-NULL values are not counted in columns.
+			-SELECT COUNT(*) FROM comments;
+		2. SUM()
+		3. AVERAGE()
+		4. MIN()
+		5. MAX()
+
+	1. GROUP BY
+		-One can only select the grouped column;
+		Eg: SELECT user_id FROM comments_id;
+
+		-In order to choose the underlying columns we need to use the aggregate functions.
+		Eg: 
+			SELECT user_id, COUNT(content) AS total_comts 
+			FROM comments 
+			GROUP BY user_id;
+	
+			SELECT user_id, MAX(LENGTH(content)) AS maxLen
+			FROM comments 
+			GROUP BY user_id
+			
+		-It is a good practice to use COUNT(*) rather than referencing a column. This saves us from the possibility of not counting any record having NULL value.	
+
+			SELECT user_id, COUNT(*) AS total_Photos
+			FROM photos
+			GROUP BY user_id;
+
+	2. HAVING
+		-HAVING will be always used with GROUP BY.
+		-Use to do more filtering on GROUP BY.
+
+			SELECT photo_id, COUNT(*)
+			FROM comments
+			WHERE photo_id <= 3
+			GROUP BY photo_id
+			HAVING COUNT(*) > 2 
+
+			SELECT user_id, COUNT(*)
+			FROM comments
+			WHERE photo_id <= 50
+			GROUP BY user_id
+			HAVING COUNT(*) > 20;
+	
 
 
 

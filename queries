@@ -22,9 +22,25 @@
 6. How to USE PostgreSQL as Calculator?
 	=# SELECT expression as expression_name;
 	=# SELECT 10+20 as addition;
-How to reset the serial data type to 0 once the table is truncated?
 
-Why Type casting is required for using monry data type in expression?
+7. How to reset the serial data type to 0 once the table is truncated?
+	=# TRUNCATE TABLE tn RESTART IDENTITY;
+		-Restarts the serial column to 0.
+	=# TRUNCATE TABLE tn CONTINUE IDENTITY - (default)
+	=# TRUNCATE TABLE tn CASCADE
+		-Deletes all the tables where foreign key is refernced.	
+	=# TRUNCATE TABLE tn RESTRICT
+
+8. Why Type casting is required for using money data type in expression?
+
+9. How to view records from 3 tables at once/using single query?
+	-Also known as 3 way join.
+	-This can be done using two join commands.
+	=# SELECT url AS photo, content AS comment, username as user 
+		FROM photos
+		JOIN comments ON photos.id = comments.id 
+		JOIN users ON photos.user_id = users.id;
+
 
 
 	
@@ -49,3 +65,5 @@ Head
 Amber - AI.
 70-75.
 2013.
+
+ES NEXt
