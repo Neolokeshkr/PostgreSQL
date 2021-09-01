@@ -230,6 +230,7 @@ JOINS And Aggregation:
 	EXCEPT
 	1. EXCEPT
 		-Compares the result of first query with second query and remove common rows/records and display remaining results.
+		-The EXCEPT operator computes the set of rows that are in the result of the left SELECT statement but not in the result of the right one.
 		-Eg : (
 			SELECT * 
 			FROM products 
@@ -243,3 +244,24 @@ JOINS And Aggregation:
 			ORDER BY price DESC 
 			LIMIT 4
 		);
+	2. EXCEPT ALL
+		
+
+	Subqueries
+		- Queries are nested inside another query.\
+		Some Rules:
+		- Any subquery that results in a single value can be used in SELECT stamement;
+			Eg : SELECT name, price, (SELECT MIN(price) FROM products) AS lowest_price
+			FROM products
+			WHERE price < 800;
+		- Any subquery, so long as the outer selects/wheres etc are compatible in FROM.
+			-Subquery in FROM must have an alias.
+			-Eg: SELECT name, price_weight_ratio
+				FROM (
+					SELECT name, price/weight AS price_weight_ratio
+					FROM prducts
+				) AS p
+				WHERE price_weight_ratio > 5;
+
+		 
+			

@@ -1,0 +1,9 @@
+Coding Exercise 20
+	SELECT MAX(max_price) AS max_average_price FROM (SELECT manufacturer, SUM(price)/COUNT(*) AS max_price FROM phones GROUP BY manufacturer) AS p;
+			OR
+
+		SELECT MAX(avg_price) AS max_average_price FROM (
+        SELECT AVG(price) AS avg_price
+            FROM phones 
+            GROUP BY manufacturer
+    ) AS p;
