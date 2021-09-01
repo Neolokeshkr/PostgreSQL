@@ -41,8 +41,24 @@
 		JOIN comments ON photos.id = comments.id 
 		JOIN users ON photos.user_id = users.id;
 
+10. How to find the record with least price?
+	=# SELECT * FROM products ORDER BY price LIMIT 1;
 
+11.  How to find the record with maximum price?
+	=# SELECT * FROM products ORDER BY price DESC LIMIT 1;
 
+12. How to skip first 50 records?
+	=# SELECT * FROM products OFFSET 50;
+
+13. How to skip first 50 records and see next 10 records?
+	=# SELECT * FROM products LIMIT 10 OFFSET 50;
+
+14. Why LIMIT and OFFSET are used together?
+	- In order to view a limited number of records out of a large number of records we use OFFSET and LIMIT
+
+15. Write a query to see 2nd and 3rd most expenstive product.
+	=# SELECT * FROM products ORDER BY price DESC LIMIT 2 OFFSET 1;
+	
 	
 
 

@@ -139,7 +139,7 @@ JOINS And Aggregation:
 			FROM photos
 			GROUP BY user_id;
 
-	2. HAVING
+	1.1. HAVING
 		-HAVING will be always used with GROUP BY.
 		-Use to do more filtering on GROUP BY.
 
@@ -154,7 +154,92 @@ JOINS And Aggregation:
 			WHERE photo_id <= 50
 			GROUP BY user_id
 			HAVING COUNT(*) > 20;
+
+	Sorting	
+	1. ORDER BY
+		-Used to sort records in ascending or descending order.
+		-Can be applied both to numbers and alphabets.
+		-Can be applied to one or more records.
+		
+		Types:
+		1.1 ORDER BY cn || ORDER BY cn ASC - default ascending
+		1.2 ORDER BY cn DESC - descending order
+
+		Eg:	SELECT * FROM products ORDER BY price;
+					OR
+			SELECT * FROM products ORDER BY price ASC;
 	
+			SELECT * FROM products ORDER BY price DESC;
+			SELECT * FROM products ORDER BY price,weight;
 
+	OFFSET and LIMIT
+	1. OFFSET
+		-Used to skip a number of records from the beginning.
+		Eg :	SELECT * FROM products OFFSET 50;
+	2. LIMIT 
+		-Used to look for a limited number of records from the beginning.
+		Eg : SELECT * FROM PRODUCTS LIMIT 50;
+	3. OFFSET AND LIMIT TOGETHER
+		-In case of using offset and limit together always place the LIMIT keyword before OFFSET (by convention)
+		Eg : SELECT * FROM products LIMIT 10 OFFSET 50;
 
+	ORDER BY, LIMIT, OFFSET
+		Eg : SELECT * FROM products ORDER BY price LIMIT 10 OFFSET 1;
 
+	UNION
+	1. UNION	
+		- Union is used to join the result of two queries together.
+		- It doesnot display any duplicate records if it is present in both of the queries.
+		Eg : (
+			SELECT * 
+			FROM products 
+			ORDER BY price/weight DESC 
+			LIMIT 4 
+		)
+		UNION
+		(
+			SELECT * 
+			FROM products 
+			ORDER BY price DESC 
+			LIMIT 4
+		);
+
+	2. UNION ALL
+		- It is used it is necessary to display duplicate records.
+
+	INTERSECT
+	1. INTERSECT 
+		-Displays the rows/records which are present in two differnt query resut sets.
+		Eg : (
+			SELECT * 
+			FROM products 
+			ORDER BY price/weight DESC 
+			LIMIT 4 
+		)
+		INTERSECT
+		(
+			SELECT * 
+			FROM products 
+			ORDER BY price DESC 
+			LIMIT 4
+		);
+		
+	2. INTERSECT ALL
+		-Displays the rows/records once for each pair of common records present in different query result sets.
+
+	EXCEPT
+	1. EXCEPT
+		-Compares the result of first query with second query and remove common rows/records and display remaining results.
+		-Eg : (
+			SELECT * 
+			FROM products 
+			ORDER BY price/weight DESC 
+			LIMIT 4 
+		)
+		EXCEPT
+		(
+			SELECT * 
+			FROM products 
+			ORDER BY price DESC 
+			LIMIT 4
+		);
