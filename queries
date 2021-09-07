@@ -59,6 +59,9 @@
 15. Write a query to see 2nd and 3rd most expenstive product.
 	=# SELECT * FROM products ORDER BY price DESC LIMIT 2 OFFSET 1;
 	
+16. How to use SELECT WITHOUT a FROM clause?
+	-This can be done using a subquery.	
+	=# SELECT (SELECT MAX(price) from products)/ (SELECT MIN(price) FROM products);
 	
 
 

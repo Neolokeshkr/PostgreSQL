@@ -251,9 +251,11 @@ JOINS And Aggregation:
 		- Queries are nested inside another query.\
 		Some Rules:
 		- Any subquery that results in a single value can be used in SELECT stamement;
+			- Subquery must return only one column in SELECT.
 			Eg : SELECT name, price, (SELECT MIN(price) FROM products) AS lowest_price
 			FROM products
 			WHERE price < 800;
+		
 		- Any subquery, so long as the outer selects/wheres etc are compatible in FROM.
 			-Subquery in FROM must have an alias.
 			-Eg: SELECT name, price_weight_ratio
@@ -263,5 +265,72 @@ JOINS And Aggregation:
 				) AS p
 				WHERE price_weight_ratio > 5;
 
-		 
-			
+		 - Subquery using JOIN 
+			Eg : SELECT first_name 
+				FROM users 
+				JOIN (SELECT user_id FROM orders WHERE product_id =3) AS u 
+				ON users.id = u.user_id;
+
+		- Subquery inside WHERE IN() AND NOT IN()
+			Eg: SELECT id 
+				FROM orders 
+				WHERE product_id 
+				IN (SELECT id FROM products WHERE price/weight > 50) 
+				LIMIT 10;
+					OR Using JOIN
+			SELECT orders.id 
+				FROM orders 
+				JOIN (SELECT id FROM products WHERE price/weight > 50) AS p ON orders.product_id = p.id 
+				LIMIT 10;
+
+	MORE WHERE OPERATORS
+	1. ALL 
+		-Compares LHS value with ALL RHS values
+		Eg: SELECT name, department, price FROM products WHERE price > ALL (SELECT price FROM products WHERE department = 'Industrial');
+			OR
+		SELECT name, department, price FROM products WHERE price > (SELECT MAX(price) FROM products WHERE department = 'Industrial'); 
+
+	2. ANY/SOME 
+		SELECT name FROM products WHERE price < SOME/ANY (SELECT price FROM products WHERE department = 'Industrial');
+
+
+	CORELATED SUBQUERIES
+		-When one subquery references other suv=bquery values.
+		-Subquery in WHERE clause
+			-SELECT name, department, price FROM products AS p1 WHERE price =  (SELECT MAX(price) FROM products AS p2 WHERE p2.department = p1.department);
+		-Subquery in SELECT clause
+			-SELECT name, (SELECT COUNT(*) FROM orders AS p2 WHERE p2.product_id = p1.id) AS num_order FROM products AS p1;
+
+	Selecting Single values from SELECT Withot using FROM
+		-This can be done using a subquery.	
+	=# SELECT (SELECT MAX(price) from products)/ (SELECT MIN(price) FROM products);
+
+	DISTINCT Keyword
+		-Used to SELECT unique values FROM a column.
+		Eg : 	1. SELECT DISTINCT department from products;
+			2. SELECT COUNT(DISTINCT department) FROM products;
+		-COUNT when used with DISTINCT only works with a single column.
+		-Aggregate function doesnot 
+				OR USING GROUP BY
+			1. SELECT department from products GROUP BY department;
+	
+	GREATEST keyword
+		-Used to identify the GREATEST value FROM a list.
+		Eg : SELECT GREATEST(1,2,3,4,50); //>50
+			SELECT name, department, GREATEST(30,weight*2) FROM PRODUCTS;
+
+	LEAST keyword
+		-Used to identify the LEAST value FROM a list.
+		Eg : SELECT LEAST(1,2,3,4,50); //>1
+			SELECT name, department, LEAST(30,weight*2) FROM PRODUCTS;
+
+	CASE Keyword
+		-Allows to do Switch Case comparisions on columns.
+		-Not used very often as these comparisons are done at client/server level.
+		Eg : SELECT name,price, 
+			CASE
+				WHEN price > 600 THEN 'high'
+				WHEN price > 300 THEN 'low'
+				ELSE 'cheap'
+			END AS cost
+			FROM products;
